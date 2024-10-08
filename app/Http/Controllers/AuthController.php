@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
@@ -12,8 +13,23 @@ class AuthController extends Controller
     }
 
     // Proses Login
-    public function prosesLogin() {
-        
+    public function prosesLogin(Request $request) {
+        $request->validate([
+            'email'     => 'required',
+            'password'  => 'required',
+        ]);
+
+        $credential = $request->only('email', 'password');
+
+        if (Auth::attempt($credential)) {
+            $user = Auth::user();
+
+            if ($user['role'] == 'admin') {
+                return redirect('admin');
+            }
+        }
+
+        return redirect('login');
     }
 
     // Halaman Registrasi
@@ -27,7 +43,10 @@ class AuthController extends Controller
     }
 
     // proses Logout
-    public function logout() {
-        
+    public function logout(Request $request) {
+        $request->session()->flush();
+
+        Auth::logout();
+        return redirect('login');
     }
 }

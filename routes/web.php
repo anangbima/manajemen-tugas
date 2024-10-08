@@ -10,12 +10,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'login'])->name('login');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/logout', [AuthController::class, 'logut'])->name('logout');
-Route::get('/registrasi', [AuthController::class, 'Registrasi'])->name('registrasi');
+Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/registrasi', [AuthController::class, 'registrasi'])->name('registrasi');
+Route::post('/peoses-login', [AuthController::class, 'prosesLogin'])->name('proses-login');
+
 
 Route::middleware(['auth'])->group( function () {
-    Route::middleware(['checkRole:admin'])->group(function () {
-        // Route admin 
+    // Route admin 
+    Route::middleware(['role:admin'])->group(function () {
         Route::group([
             'prefix' => '/admin',
             'as'    => 'admin'

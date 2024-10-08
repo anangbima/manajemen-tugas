@@ -8,5 +8,11 @@
 </head>
 <body>
     <H1>Login</H1>
+    <form action="{{ route('proses-login') }}" method="post">
+        @csrf
+        <input type="email" name="email">
+        <input type="password" name="password">
+        <input type="submit" value="Login">
+    </form>
 </body>
 </html>

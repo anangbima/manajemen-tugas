@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Tugas;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
-class TugasController extends Controller
+class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class TugasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Tugas $tugas)
+    public function show(Project $project)
     {
         //
     }
@@ -42,7 +42,7 @@ class TugasController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Tugas $tugas)
+    public function edit(Project $project)
     {
         //
     }
@@ -50,7 +50,7 @@ class TugasController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Tugas $tugas)
+    public function update(Request $request, Project $project)
     {
         //
     }
@@ -58,7 +58,7 @@ class TugasController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tugas $tugas)
+    public function destroy(Project $project)
     {
         //
     }

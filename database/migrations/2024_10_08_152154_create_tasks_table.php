@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\User;
+use App\Models\Project;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,13 +12,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('proyeks', function (Blueprint $table) {
+        Schema::create('tasks', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class);
-            $table->string('name');
-            $table->string('slug')->unique()->nullable();
-            $table->longText('description');
-            $table->date('deadlines');
+            $table->foreignIdFor(Project::class);
+            $table->string('title');
+            $table->text('dexcription');
+            $table->dateTime('deadline');
+            $table->enum('status', ['Done', 'On going', 'Not Started']);
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('proyeks');
+        Schema::dropIfExists('tasks');
     }
 };

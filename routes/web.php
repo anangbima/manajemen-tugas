@@ -8,14 +8,27 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', [AuthController::class, 'signIn'])->name('sign-in');
-Route::get('/sign-in', [AuthController::class, 'signIn'])->name('sign-in');
-Route::get('/sign-out', [AuthController::class, 'signOut'])->name('sign-out');
-Route::get('/sign-up', [AuthController::class, 'signUp'])->name('sign-up');
+Route::get('/', [AuthController::class, 'login'])->name('login');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::get('/logout', [AuthController::class, 'logut'])->name('logout');
+Route::get('/registrasi', [AuthController::class, 'Registrasi'])->name('registrasi');
 
-Route::group([
-    'prefix' => '/admin',
-    'as'    => 'admin'
-], function () {
-    Route::get('/', [AdminController::class, 'index'])->name('dashboard-admin');
+Route::middleware(['auth'])->group( function () {
+    Route::middleware(['checkRole:admin'])->group(function () {
+        // Route admin 
+        Route::group([
+            'prefix' => '/admin',
+            'as'    => 'admin'
+        ], function () {
+            Route::get('/', [AdminController::class, 'index'])->name('dashboard-admin');
+        });
+    });
 });
+
+// Route admin 
+// Route::group([
+//     'prefix' => '/admin',
+//     'as'    => 'admin'
+// ], function () {
+//     Route::get('/', [AdminController::class, 'index'])->name('dashboard-admin');
+// });

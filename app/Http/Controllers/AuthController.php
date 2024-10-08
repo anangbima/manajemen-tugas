@@ -7,27 +7,27 @@ use Illuminate\Http\Request;
 class AuthController extends Controller
 {
     // Halaman Login
-    public function signIn() {
-        return view('auth.signIn');
+    public function login() {
+        return view('auth.login');
     }
 
     // Proses Login
-    public function prosesSignIn() {
+    public function prosesLogin() {
         
     }
 
     // Halaman Registrasi
-    public function signUp() {
+    public function registrasi() {
         return view('auth.signUp');
     } 
 
     // Proses Registrasi
-    public function prosesSignUp() {
+    public function prosesRegistrasi() {
         
     }
 
     // proses Logout
-    public function signOut() {
+    public function logout() {
         
     }
 }

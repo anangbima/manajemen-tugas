@@ -20,7 +20,11 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'title'     => 'Create Task',
+        ];
+
+        return view('user.tasks.create', $data);
     }
 
     /**

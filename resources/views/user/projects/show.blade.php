@@ -24,8 +24,12 @@
 
                 {{-- Tugas Section --}}
                 <div class="mb-5">
-                    <div>
+                    <div class="d-flex justify-content-between align-items-center">
                         <h5>Task</h5>
+
+                        <div>
+                            <a href="{{ route('tasks.create') }}" class="btn btn-outline-dark btn-sm">Add new</a>
+                        </div>
                     </div>
 
                     <div class="row mt-3">

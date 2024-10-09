@@ -17,10 +17,6 @@
             {{-- list user --}}
             <div class="mb-3">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="member[]" value="1">
-                    <label class="form-check-label" for="inlineCheckbox1">User 1</label>
-                </div>
-                <div class="form-check form-check-inline">
                     <input class="form-check-input" type="checkbox" id="inlineCheckbox1" name="member[]" value="2">
                     <label class="form-check-label" for="inlineCheckbox1">User 2</label>
                 </div>
@@ -31,7 +27,7 @@
             </div>
 
             <div class="d-flex flex-row-reverse mt-4">
-                <input type="submit" class="btn btn-outline-dark" value="Submit">
+                <input type="submit" class="btn btn-outline-dark" value="Create">
             </div>
         </form>
     </div>

@@ -86,42 +86,35 @@
             </div>
 
             <div class="mt-3">
-                <div class="card shadow-sm border-0 bg-white mb-3">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <h5 class="card-title">
-                                Project 1
-                            </h5>
+                @foreach ($projects as $project)
+                    <div class="card shadow-sm border-0 bg-white mb-3">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between">
+                                <h6 class="card-title">
+                                    {{ $project->name }}
+                                </h6>
 
-                            <div>
-                                <img src="{{ URL::asset('/user/default.png') }}" class="rounded-circle" style="width: 24px; height: 24px"></img>
-                                <img src="{{ URL::asset('/user/default.png') }}" class="rounded-circle" style="width: 24px; height: 24px"></img>
-                                <img src="{{ URL::asset('/user/default.png') }}" class="rounded-circle" style="width: 24px; height: 24px"></img>
-                                <img src="{{ URL::asset('/user/default.png') }}" class="rounded-circle" style="width: 24px; height: 24px"></img>
+                                <div>
+                                    @foreach ($project->member as $member)
+                                        <img src="{{ url('/user/default.png') }}" class="rounded-circle" style="width: 24px; height: 24px"></img>
+                                    @endforeach
+                                </div>
+                            </div>
+
+                            <div class="d-flex gap-2">
+                                <a href="{{ route('projects.edit', $project) }}" style="z-index: 2;">Edit</a>
+                                <form style="z-index: 2;" action="{{ route('projects.destroy', $project) }}" method="POST">
+                                    @method('DELETE')
+                                    @csrf
+                                    <button>Delete</button>
+                                </form>
+                                {{-- <a href="{{ route('projects.destroy', $project) }}" style="z-index: 2;">Hapus</a> --}}
                             </div>
                         </div>
+                        
+                        <a href="{{ url('/projects/'.$project->slug) }}" class="stretched-link"></a>
                     </div>
-                    
-                    <a href="#" class="stretched-link"></a>
-                </div>
-
-                <div class="card shadow-sm border-0 bg-white mb-3">
-                    <div class="card-body">
-                        <div class="d-flex justify-content-between">
-                            <h5 class="card-title">
-                                Project 2
-                            </h5>
-
-                            <div>
-                                <img src="{{ URL::asset('/user/default.png') }}" class="rounded-circle" style="width: 24px; height: 24px"></img>
-                                <img src="{{ URL::asset('/user/default.png') }}" class="rounded-circle" style="width: 24px; height: 24px"></img>
-                                <img src="{{ URL::asset('/user/default.png') }}" class="rounded-circle" style="width: 24px; height: 24px"></img>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <a href="#" class="stretched-link"></a>
-                </div>
+                @endforeach
             </div>
         </div>
 
@@ -133,16 +126,16 @@
                 <div class="card shadow-sm border-0 bg-white mb-3">
                     <div class="card-body">
                         <div class="d-flex justify-content-between">
-                            <h5 class="card-title">
+                            <h6 class="card-title">
                                 Project 3
-                            </h5>
+                            </h6>
 
                             <div>
-                                <img src="{{ URL::asset('/user/default.png') }}" class="rounded-circle" style="width: 24px; height: 24px"></img>
-                                <img src="{{ URL::asset('/user/default.png') }}" class="rounded-circle" style="width: 24px; height: 24px"></img>
-                                <img src="{{ URL::asset('/user/default.png') }}" class="rounded-circle" style="width: 24px; height: 24px"></img>
-                                <img src="{{ URL::asset('/user/default.png') }}" class="rounded-circle" style="width: 24px; height: 24px"></img>
-                                <img src="{{ URL::asset('/user/default.png') }}" class="rounded-circle" style="width: 24px; height: 24px"></img>
+                                <img src="{{ url('/user/default.png') }}" class="rounded-circle" style="width: 24px; height: 24px"></img>
+                                <img src="{{ url('/user/default.png') }}" class="rounded-circle" style="width: 24px; height: 24px"></img>
+                                <img src="{{ url('/user/default.png') }}" class="rounded-circle" style="width: 24px; height: 24px"></img>
+                                <img src="{{ url('/user/default.png') }}" class="rounded-circle" style="width: 24px; height: 24px"></img>
+                                <img src="{{ url('/user/default.png') }}" class="rounded-circle" style="width: 24px; height: 24px"></img>
                             </div>
                         </div>
                     </div>

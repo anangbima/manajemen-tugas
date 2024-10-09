@@ -27,6 +27,8 @@ Route::middleware(['auth'])->group( function () {
 
     // Route user
     Route::middleware(['role:user'])->group(function () {
-        Route::resource('projects', ProjectController::class);
+        Route::resource('projects', ProjectController::class)->parameters([
+            'projects'  => 'project:slug'
+        ]);
     });
 });

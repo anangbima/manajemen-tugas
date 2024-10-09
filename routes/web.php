@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -18,19 +20,13 @@ Route::post('/peoses-login', [AuthController::class, 'prosesLogin'])->name('pros
 Route::middleware(['auth'])->group( function () {
     // Route admin 
     Route::middleware(['role:admin'])->group(function () {
-        Route::group([
-            'prefix' => '/admin',
-            'as'    => 'admin'
-        ], function () {
+        Route::prefix('admin')->group(function () {
             Route::get('/', [AdminController::class, 'index'])->name('dashboard-admin');
         });
     });
-});
 
-// Route admin 
-// Route::group([
-//     'prefix' => '/admin',
-//     'as'    => 'admin'
-// ], function () {
-//     Route::get('/', [AdminController::class, 'index'])->name('dashboard-admin');
-// });
+    // Route user
+    Route::middleware(['role:user'])->group(function () {
+        Route::resource('projects', ProjectController::class);
+    });
+});

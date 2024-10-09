@@ -12,7 +12,11 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        //
+        $data = [
+            'title'     => 'Projects'
+        ];
+
+        return view('user.projects.index', $data);
     }
 
     /**
@@ -20,7 +24,11 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        $data = [
+            'title'     => 'Create Project'
+        ];
+
+        return view('user.projects.create', $data);
     }
 
     /**
@@ -28,7 +36,7 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request->member);
     }
 
     /**

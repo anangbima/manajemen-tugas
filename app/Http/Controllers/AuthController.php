@@ -2,22 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
+use App\Http\Requests\RegistrasiRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
     // Halaman Login
     public function login() {
-        return view('auth.login');
+        $data = [
+            'title'     => 'Login'
+        ];
+
+        return view('auth.login', $data);
     }
 
     // Proses Login
-    public function prosesLogin(Request $request) {
-        $request->validate([
-            'email'     => 'required',
-            'password'  => 'required',
-        ]);
+    public function prosesLogin(LoginRequest $request) {
+        // $request->validate([
+        //     'email'     => 'required',
+        //     'password'  => 'required',
+        // ]);
+
+        $request->validated();
 
         $credential = $request->only('email', 'password');
 
@@ -38,12 +48,25 @@ class AuthController extends Controller
 
     // Halaman Registrasi
     public function registrasi() {
-        return view('auth.signUp');
+        $data = [
+            'title'     => 'Registrasi'
+        ];
+
+        return view('auth.registrasi', $data);
     } 
 
     // Proses Registrasi
-    public function prosesRegistrasi() {
-        
+    public function prosesRegistrasi(RegistrasiRequest $request) {
+        $data = $request->validated();
+
+        User::create([
+            'name'          => $data['name'],
+            'email'         => $data['email'],
+            'password'      => Hash::make($data['password']),
+            'role'          => 'user'
+        ]);
+
+        return redirect('login');
     }
 
     // proses Logout

@@ -16,6 +16,7 @@ Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/registrasi', [AuthController::class, 'registrasi'])->name('registrasi');
 Route::post('/peoses-login', [AuthController::class, 'prosesLogin'])->name('proses-login');
+Route::post('/peoses-registrasi', [AuthController::class, 'prosesRegistrasi'])->name('proses-registrasi');
 
 
 Route::middleware(['auth'])->group( function () {

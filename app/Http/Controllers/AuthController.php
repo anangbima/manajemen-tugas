@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Inertia\Inertia;
 
 class AuthController extends Controller
 {
@@ -16,17 +17,11 @@ class AuthController extends Controller
         $data = [
             'title'     => 'Login'
         ];
-
-        return view('auth.login', $data);
+        return Inertia::render('Auth/Login');
     }
 
     // Proses Login
     public function prosesLogin(LoginRequest $request) {
-        // $request->validate([
-        //     'email'     => 'required',
-        //     'password'  => 'required',
-        // ]);
-
         $request->validated();
 
         $credential = $request->only('email', 'password');

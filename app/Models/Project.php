@@ -14,7 +14,6 @@ class Project extends Model
         'name', 
         'slug', 
         'description', 
-        'user_id'
     ];
 
     // Manage slug projects
@@ -26,11 +25,6 @@ class Project extends Model
                 'onUpdate'  => true
             ]
         ];
-    }
-
-    // Relasi dengan tabel user
-    public function user () {
-        return $this->belongsTo(User::class);
     }
 
     // Relasi dengan tabel task

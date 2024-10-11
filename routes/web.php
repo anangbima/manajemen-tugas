@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\MemberProjectController as AdminMemberProjectController;
+use App\Http\Controllers\Admin\MemberTaskController as AdminMemberTaskController;
+use App\Http\Controllers\Admin\ProjectController as AdminProjectController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProjectController;
@@ -24,14 +27,23 @@ Route::middleware(['auth'])->group( function () {
     Route::middleware(['role:admin'])->group(function () {
         Route::prefix('admin')->group(function () {
             Route::get('/', [AdminController::class, 'index'])->name('dashboard-admin');
+            Route::resource('projects', AdminProjectController::class)->parameters([
+                'projects'      => 'project:slug'
+            ]);
+            Route::resource('member-project', AdminMemberProjectController::class)->only([
+                'store', 'destroy'
+            ]);
+            Route::resource('member-task', AdminMemberTaskController::class)->only([
+                'store', 'destroy'
+            ]);
         });
     });
 
     // Route user
     Route::middleware(['role:user'])->group(function () {
-        Route::resource('projects', ProjectController::class)->parameters([
-            'projects'  => 'project:slug'
-        ]);
-        Route::resource('tasks', TaskController::class);
+        // Route::resource('projects', ProjectController::class)->parameters([
+        //     'projects'  => 'project:slug'
+        // ]);
+        // Route::resource('tasks', TaskController::class);
     });
 });

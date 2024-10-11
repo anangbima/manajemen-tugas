@@ -27,6 +27,14 @@ class Project extends Model
         ];
     }
 
+    // Store data to table project
+    public function store(array $data) {
+        return $this->create([
+            'name'          => $data['name'],
+            'description'   => $data['description'],
+        ]);
+    }
+
     // Relasi dengan tabel task
     public function task () {
         return $this->hasMany(Task::class);

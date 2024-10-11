@@ -11,6 +11,12 @@ use Illuminate\Http\Request;
 
 class ProjectController extends Controller
 {
+    protected $project;
+
+    public function __construct(){
+        $this->project = new Project;
+    }
+
     // Display listing of the resource
     public function index() {
         $data = [
@@ -29,11 +35,7 @@ class ProjectController extends Controller
     // Store data projects
     public function store(StoreProjectRequest $request) {
         $data = $request->validated();
-
-        $project = Project::create([
-            'name'          => $data['name'],
-            'description'   => $data['description'],
-        ]);
+        $project = $this->project->store($data);
         
         if($project && $request->member != null) {
             foreach($request->member as $value) {

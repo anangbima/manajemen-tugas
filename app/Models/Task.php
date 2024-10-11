@@ -21,5 +21,9 @@ class Task extends Model
     public function project () {
         return $this->belongsTo(Project::class);
     }
-    
+
+    // Relasi dengan tabel member task
+    public function member () {
+        return $this->hasMany(MemberTask::class);
+    }
 }

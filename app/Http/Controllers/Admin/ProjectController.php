@@ -5,10 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
-use App\Models\Member;
+use App\Models\MemberProject;
 use App\Models\Project;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {
@@ -38,7 +37,7 @@ class ProjectController extends Controller
         
         if($project && $request->member != null) {
             foreach($request->member as $value) {
-                Member::create([
+                MemberProject::create([
                     'project_id'    => $project->id,
                     'user_id'       => $value,
                 ]);

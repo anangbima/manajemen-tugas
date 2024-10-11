@@ -32,8 +32,8 @@ class Project extends Model
         return $this->hasMany(Task::class);
     }
 
-    // Relasi dengan tabel member
+    // Relasi dengan tabel member project
     public function member () {
-        return $this->hasMany(Member::class);
+        return $this->hasMany(MemberProject::class);
     }
 }

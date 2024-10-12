@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class AdminController extends Controller
 {
@@ -16,12 +17,11 @@ class AdminController extends Controller
 
     // Akses halaman dashboard admin
     public function index () {
-        return view('admin.index');
+        return Inertia::render('Admin/Index');
     }
 
-    // Akses halaman profile
-    // Akses halaman profile
+    // Akses halaman profil
     public function profile () {
-        return view('admin.profile');
+        return Inertia::render('Admin/Profile');
     }
 }

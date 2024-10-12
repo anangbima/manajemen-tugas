@@ -14,9 +14,6 @@ class AuthController extends Controller
 {
     // Halaman Login
     public function login() {
-        $data = [
-            'title'     => 'Login'
-        ];
         return Inertia::render('Auth/Login');
     }
 
@@ -43,11 +40,7 @@ class AuthController extends Controller
 
     // Halaman Registrasi
     public function registrasi() {
-        $data = [
-            'title'     => 'Registrasi'
-        ];
-
-        return view('auth.registrasi', $data);
+        return Inertia::render('Auth/Registrasi');
     } 
 
     // Proses Registrasi

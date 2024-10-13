@@ -8,6 +8,7 @@ use App\Http\Requests\UpdateProjectRequest;
 use App\Models\MemberProject;
 use App\Models\Project;
 use Illuminate\Http\Request;
+use Inertia\Inertia;
 
 class ProjectController extends Controller
 {
@@ -20,11 +21,12 @@ class ProjectController extends Controller
     // Display listing of the resource
     public function index() {
         $data = [
-            'title'     => 'Projects',
             'projects'  => Project::with('member', 'task')->get(), 
         ];
 
-        return view('admin.projects.index', $data);
+        return Inertia::render('Admin/Project', [
+            'projects'  => Project::with('member', 'task')->get()
+        ]);
     }
 
     // Display specific projects

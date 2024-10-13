@@ -11,7 +11,9 @@ const AdminLayout = ({children}) => {
         <Navbar/>
 
         <div className='content-wrap'>
-          {children}
+          <div className='content'>
+            {children}
+          </div>
         </div>
       </div>
     </div>
